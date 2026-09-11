@@ -1,0 +1,114 @@
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+##### Bar Appearance #####
+# Solid white like the default macOS bar
+sketchybar --bar position=top \
+                 height=28 \
+                 blur_radius=0 \
+                 color=0xffcccccc \
+                 shadow=off
+
+##### Changing Defaults #####
+default=(
+  padding_left=8
+  padding_right=8
+  icon.font="Hack Nerd Font:Regular:13.0"
+  label.font="SF Pro:Regular:13.0"
+  #label.font="Terminess Nerd Font:Regular:15.0"
+
+  icon.color=0xff474747
+  label.color=0xff474747
+
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
+
+  background.drawing=off
+)
+
+sketchybar --default "${default[@]}"
+
+##### Apple Logo #####
+sketchybar --add item apple.logo left \
+           --set apple.logo \
+               icon="" \
+               icon.font="SF Pro:Bold:16.0" \
+               icon.color=0xff474747 \
+               label.drawing=off \
+               click_script="open -a 'System Settings'"
+
+##### AeroSpace Workspace Integration #####
+
+# Add event for workspace change
+sketchybar --add event aerospace_workspace_change
+
+# Create workspace highlight script
+cat << 'EOF' > "$PLUGIN_DIR/aerospace.sh"
+#!/usr/bin/env bash
+
+if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
+    sketchybar --set $NAME background.drawing=on
+else
+    sketchybar --set $NAME background.drawing=off
+fi
+EOF
+
+chmod +x "$PLUGIN_DIR/aerospace.sh"
+
+# Add workspace items dynamically based on AeroSpace
+for sid in $(/opt/homebrew/bin/aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+            icon.drawing=off \
+            label.padding_left=6 \
+            label.padding_right=6 \
+            background.color=0x44000000 \
+            background.corner_radius=1 \
+            background.height=3 \
+            background.y_offset=-10 \
+            background.drawing=off \
+	    label.align=center \
+            label="$sid" \
+            click_script="/opt/homebrew/bin/aerospace workspace $sid" \
+            script="$PLUGIN_DIR/aerospace.sh $sid"
+done
+
+##### Left Items #####
+sketchybar --add item front_app left \
+           --set front_app icon.drawing=off \
+                          script="$PLUGIN_DIR/front_app.sh" \
+           --subscribe front_app front_app_switched
+
+##### Right Items #####
+sketchybar --add item clock right \
+           --set clock \
+               icon.drawing=off \
+               update_freq=10 \
+               script="$PLUGIN_DIR/clock.sh"
+
+sketchybar --add item volume right \
+           --set volume \
+               icon.padding_left=6 \
+               script="$PLUGIN_DIR/volume.sh" \
+           --subscribe volume volume_change
+
+sketchybar --add item battery right \
+           --set battery \
+               update_freq=120 \
+               script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change
+
+##### Run everything #####
+sketchybar --update
+
+
+
+#fix highlight auto start
+# Wait a tiny bit for SketchyBar to finish initializing items
+sleep 0.2
+
+# Trigger workspace update so the focused workspace highlight appears
+CURRENT_WS=$(/opt/homebrew/bin/aerospace list-workspaces --focused)
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$CURRENT_WS
