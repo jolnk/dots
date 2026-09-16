@@ -6,7 +6,7 @@ dotfiles.
 </br>
 </br>
 
-<img width="1680" height="1050" alt="Screenshot 2026-09-16 at 19 06 49" src="https://github.com/user-attachments/assets/cbe1e895-a631-4142-a6bf-3fe747e02c96" />
+<img width="1680" height="1050" alt="Screenshot 2026-09-16 at 19 14 17" src="https://github.com/user-attachments/assets/823f1ae1-ceb8-4a67-ad1e-8a19415a4c1a" />
 
 </br>
 </br>
