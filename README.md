@@ -45,7 +45,7 @@ Both prompts use:
 Background color
 
 ```
-#C0C0C0
+#B9B9B9
 ```
 
 
