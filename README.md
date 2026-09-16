@@ -42,7 +42,7 @@ Both prompts use:
 
 ## Misc
 
-MacOS
+MacOS Settings
 
 ```
 - Appearence
