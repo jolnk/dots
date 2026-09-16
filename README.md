@@ -45,7 +45,31 @@ Both prompts use:
 Background color
 
 ```
-#B9B9B9
+- Appearence
+
+Appearence: Dark
+Liquid Glass: Clear
+
+Theme
+Color: Graphite
+Text highlight color: #00FA92
+
+Icon & widget style: Tinted Dark
+Icon, widget & folder color: Graphite
+
+Windows
+Sidebar icon size: Medium
+Tint window background with wallpaper color: yes
+
+Show scroll bars: When scrolling
+Click in the scrollbar to: Jump to the next page
+
+
+- Wallpaper
+
+Center
+Color: #B9B9B9
+Show on all Spaces: yes
 ```
 
 
