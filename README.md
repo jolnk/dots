@@ -28,6 +28,6 @@ PS1='\[\e[34m\]\w\[\e[0m\] \[\e[37m\]λ\[\e[0m\] '
 
  Both prompts use:
 
-- Blue for the current directory
-- White for the `λ` prompt symbol
+- Default blue for the current directory
+- Default white for the `λ` prompt symbol
 - Default terminal foreground for typed commands
