@@ -14,3 +14,29 @@ nano ~/.zshrc
 nano ~/.bashrc
   PS1='\[\e[34m\]\w\[\e[0m\] \[\e[37m\]λ\[\e[0m\] '
 ```
+
+
+
+ ## Shell Prompt
+
+ ### Zsh
+
+ Add to `~/.zshrc`:
+
+```
+PROMPT='%F{blue}%~%f %F{white}λ%f '
+```
+
+ ### Bash
+
+ Add to `~/.bashrc`:
+
+```
+PS1='\[\e[34m\]\w\[\e[0m\] \[\e[37m\]λ\[\e[0m\] '
+```
+
+ Both prompts use:
+
+ - Blue for the current directory
+- White for the `λ` prompt symbol
+- Default terminal foreground for typed commands
