@@ -12,26 +12,40 @@ dotfiles.
 </br>
 </br>
 
- ## Shell Config
+## Shell Config
 
- ### Zsh
+### Zsh
 
- Add to `~/.zshrc`:
+Add to `~/.zshrc`:
 
 ```
 PROMPT='%F{blue}%~%f %F{white}λ%f '
 ```
 
- ### Bash
+### Bash
 
- Add to `~/.bashrc`:
+Add to `~/.bashrc`:
 
 ```
 PS1='\[\e[34m\]\w\[\e[0m\] \[\e[37m\]λ\[\e[0m\] '
 ```
 
- Both prompts use:
+Both prompts use:
 
 - Default blue for the current directory
 - Default white for the `λ` prompt symbol
 - Default terminal foreground for typed commands
+
+</br>
+</br>
+</br>
+
+## Misc
+
+Background color
+
+```
+#C0C0C0
+```
+
+
